@@ -1,0 +1,104 @@
+﻿@page "/"
+
+<PageTitle>Mvie Zibi Raphael – Développeur senior .NET</PageTitle>
+
+<div class="cv">
+    <aside class="identite">
+
+        <div style="align-content: center;">
+            <img src="raphpic.jpg" class="img-thumbnail" alt="..." style="border-radius: 50%; width: 280px; height: 280px; object-fit: cover;">
+        </div>
+        <div>
+            <h1>Mvie Zibi Raphael</h1>
+            <p class="titre">Développeur senior full stack .NET</p>
+            <p class="lieu">Québec, Canada</p>
+        </div>
+
+        <div>
+            <ul class="contact">
+                <li><a href="mailto:ton@email.com">ton@email.com</a></li>
+                <li><a href="https://www.linkedin.com/in/ton-profil">LinkedIn</a></li>
+                <li><a href="https://github.com/ton-utilisateur">GitHub</a></li>
+            </ul>  
+        </div>
+        <a class="telecharger" href="cv.pdf" download>Télécharger mon CV en PDF</a>
+    </aside>
+
+    <div class="contenu">
+       
+        
+        <section>
+            <h2>Profil</h2>
+            <p>
+                Développeur .NET C# avec plus de 11 ans d'expérience en applications web, API et
+                applications mobiles. J'ai participé à plus de 40 applications et dirigé des équipes
+                techniques, de la conception jusqu'au déploiement en CI/CD.
+            </p>
+        </section>
+
+        <section>
+            <h2>Compétences</h2>
+            <dl class="competences">
+                @foreach (var groupe in competences)
+                {
+                    <div>
+                        <dt>@groupe.Titre</dt>
+                        <dd>@string.Join(", ", groupe.Elements)</dd>
+                    </div>
+                }
+            </dl>
+        </section>
+
+        <section>
+            <h2>Expérience</h2>
+            @foreach (var poste in experiences)
+            {
+                <article class="poste">
+                    <h3>@poste.Titre</h3>
+                    <p class="meta"><strong>@poste.Entreprise</strong> <span>@poste.Periode</span></p>
+                    <p>@poste.Resume</p>
+                </article>
+            }
+        </section>
+
+        <section>
+            <h2>Certifications</h2>
+            <ul class="certifs">
+                @foreach (var certif in certifications)
+                {
+                    <li><strong>@certif.Nom</strong> <span>@certif.Annee</span></li>
+                }
+            </ul>
+        </section>
+    </div>
+</div>
+
+@code {
+    private record Groupe(string Titre, string[] Elements);
+    private record Poste(string Titre, string Entreprise, string Periode, string Resume);
+    private record Certif(string Nom, string Annee);
+
+    private readonly Groupe[] competences =
+    {
+        new("Back-end", new[] { "C#", "ASP.NET Core", "Entity Framework", "GraphQL", "RabbitMQ" }),
+        new("Front-end", new[] { "React", "Angular", "TypeScript" }),
+        new("Données", new[] { "SQL Server", "NoSQL et cache", "Power BI", "Python" }),
+        new("Cloud et DevOps", new[] { "Azure", "AWS", "Docker", "Kubernetes", "Podman", "Terraform", "CI/CD", "Linux" }),
+        new("Architecture et qualité", new[] { "Systèmes multi-tenants", "Commerce électronique", "CUPID", "Application Insights", "OpenTelemetry" })
+    };
+
+    // À remplacer par tes vrais postes
+    private readonly Poste[] experiences =
+    {
+        new("Développeur senior full stack", "Entreprise A", "20XX – aujourd'hui",
+            "Décris ici ta mission principale, les technologies utilisées et un résultat concret."),
+        new("Analyste développeur", "Entreprise B", "20XX – 20XX",
+            "Décris ici ce que tu as livré et l'impact pour l'équipe ou les clients.")
+    };
+
+    private readonly Certif[] certifications =
+    {
+        new("Microsoft Power BI Data Analyst Associate", "2024"),
+        new("Python pour l'analyse de données", "2024")
+    };
+}

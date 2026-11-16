@@ -1,0 +1,217 @@
+.cv {
+    display: grid;
+    min-height: 100vh;
+    background: #F6F8FC;
+    color: #1B2740;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;    
+}
+
+/* Panneau d'identité */
+.identite {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 3rem 1.75rem;
+    background: #0E1A33;
+    color: #E8EEFB;   
+}
+
+    .identite h1 {
+        margin: 0 0 1rem;
+        font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.8rem, 7vw, 4.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+    }
+
+.titre {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+}
+
+.lieu {
+    margin: 0.25rem 0 0;
+    color: #9AA9C7;
+}
+
+.contact {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    padding: 0;
+}
+
+    .contact li + li {
+        margin-top: 0.25rem;
+    }
+
+.identite a:not(.telecharger) {
+    color: #9DBBFF;
+    text-underline-offset: 0.2em;
+}
+
+.telecharger {
+    display: inline-block;
+    padding: 0.7rem 1.1rem;
+    border-radius: 0.4rem;
+    background: #7FA8FF;
+    color: #0E1A33;
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+}
+
+    .telecharger:hover {
+        background: #A9C4FF;
+    }
+
+/* Contenu */
+.contenu {
+    padding: 3rem 1.75rem 4rem;
+    max-width: 54rem;
+}
+
+section {
+    margin-bottom: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #D5DCEA;
+}
+
+h2 {
+    margin: 0 0 1.25rem;
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+    color: #0E1A33;
+}
+
+h3 {
+    margin: 0;
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #0E1A33;
+}
+
+p {
+    max-width: 38rem;
+}
+
+/* Compétences */
+.competences {
+    margin: 0;
+}
+
+    .competences > div {
+        display: grid;
+        gap: 0.15rem 1.5rem;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #E1E7F2;
+    }
+
+    .competences dt {
+        font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+        font-weight: 600;
+        color: #2447D6;
+    }
+
+    .competences dd {
+        margin: 0;
+    }
+
+/* Expérience */
+.poste + .poste {
+    margin-top: 2rem;
+}
+
+.meta {
+    margin: 0.15rem 0 0.5rem;
+    color: #5A6785;
+}
+
+    .meta span::before {
+        content: "– ";
+    }
+
+/* Certifications */
+.certifs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .certifs li + li {
+        margin-top: 0.5rem;
+    }
+
+    .certifs span {
+        color: #5A6785;
+    }
+
+a:focus-visible {
+    outline: 3px solid #7FA8FF;
+    outline-offset: 3px;
+}
+
+/* Écrans larges : panneau fixe à gauche, contenu qui défile */
+@media (min-width: 60rem) {
+    .cv {
+        grid-template-columns: minmax(20rem, 28rem) 1fr;
+    }
+
+    .identite {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100vh;
+        height: 100dvh;
+        overflow-y: auto;
+        padding: 3rem;
+        gap: 1.5rem;
+    }
+
+    .contenu {
+        padding: 5rem 4rem;
+    }
+
+    .competences > div {
+        grid-template-columns: 12rem 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .telecharger {
+        transition: background-color 0.15s;
+    }
+}
+
+/* Impression : une colonne, sans bouton */
+@media print {
+    .cv {
+        display: block;
+        background: #fff;
+    }
+
+    .identite {
+        position: static;
+        height: auto;
+        padding: 1.5rem;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .telecharger {
+        display: none;        
+    }
+
+    .contenu {
+        padding: 1.5rem;
+    }
+}
+
